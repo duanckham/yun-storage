@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Test</title>
+<script src="../javascript/sdk.js"></script>
+</head>
+<body>
+
+<ul id="filelist"></ul>
+<br />
+
+<div id="container">
+    <a id="browse" href="javascript:;">[Browse]</a> 
+    <a id="upload" href="javascript:;">[Upload]</a>
+</div>
+
+<script>
+var storage = new YunStorage({
+	browse_button: 'browse',
+	upload_button: 'upload'
+});
+</script>
+</body>
+</html>
