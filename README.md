@@ -4,7 +4,7 @@ FIRST
 Include this js in your frontend page.
 
 ```
-<script src="http://storage.yunpro.cn/javascript/sdk.js"></script>
+http://storage.yunpro.cn/javascript/sdk.js
 ```
 
 CREATE BUTTON HANDLE
@@ -22,7 +22,7 @@ EVENTS
 
 ```
 storage.on('progress', function(p) {
-	console.log(p); // x%
+	console.log(p);
 });
 
 storage.on('end', function(r) {
@@ -30,8 +30,8 @@ storage.on('end', function(r) {
 });
 ```
 
-API
----
+APIs
+----
 
 `(POST) http://storage.yunpro.cn/upload`
 
