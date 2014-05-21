@@ -12,7 +12,7 @@ app.use(session({secret: '5f1d65f27e370c36dfd845f6dc78b869'}));
 app.use(yunOAuth.middleware());
 app.use(express.static(__dirname + '/sdk'));
 
-// ACCESS CONTROL
+// CORS
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
