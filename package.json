@@ -1,0 +1,29 @@
+{
+  "name": "storage",
+  "version": "0.0.1",
+  "description": "yun storage",
+  "main": "app.js",
+  "dependencies": {
+    "cookie-parser": "~1.1.0",
+    "body-parser": "~1.2.0",
+    "cookie-session": "~1.0.2",
+    "express": "~4.2.0",
+    "formidable": "~1.0.14",
+    "yun-oauth": "~0.0.3",
+    "mongodb": "~1.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@211.154.172.172:yun-storage.git"
+  },
+  "keywords": [
+    "yun",
+    "storage"
+  ],
+  "author": "Noevil",
+  "license": "BSD-2-Clause"
+}
