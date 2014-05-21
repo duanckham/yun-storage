@@ -44,5 +44,3 @@ APIs
 `(GET)  http://storage.yunpro.cn/list/:user_id`
 
 `(GET)  http://storage.yunpro.cn/file/:file_id`
-
-`(GET)  http://storage.yunpro.cn/info/:file_id`
