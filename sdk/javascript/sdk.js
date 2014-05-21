@@ -34,7 +34,7 @@ YunStorage.prototype.initUploader = function() {
 YunStorage.prototype.loadPluploadJS = function(callback) {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
-	script.src = '../javascript/plupload.full.min.js';
+	script.src = 'http://storage.yunpro.cn/javascript/plupload.full.min.js';
 	document.body.appendChild(script);
 
 	var loop = setInterval(function() {
