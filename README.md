@@ -30,8 +30,8 @@ storage.on('end', function(r) {
 });
 ```
 
-API
----
+APIs
+----
 
 `(POST) http://storage.yunpro.cn/upload`
 
