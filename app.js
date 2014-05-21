@@ -22,12 +22,12 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use(function(req, res, next) {
-	req.user = {
-		openID: '5f1d65f27e370c36dfd845f6dc78b869'
-	};
-	next();
-});
+// app.use(function(req, res, next) {
+// 	req.user = {
+// 		openID: '5f1d65f27e370c36dfd845f6dc78b869'
+// 	};
+// 	next();
+// });
 
 app.use('/', router);
 app.listen(process.env.PORT || 10005);
