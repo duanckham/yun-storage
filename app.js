@@ -15,19 +15,18 @@ app.use(express.static(__dirname + '/sdk'));
 // CORS
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 	res.header('Access-Control-Allow-Credentials', true);
 
 	next();
 });
 
-// app.use(function(req, res, next) {
-// 	req.user = {
-// 		openID: '5f1d65f27e370c36dfd845f6dc78b869'
-// 	};
-// 	next();
-// });
+app.use(function(req, res, next) {
+	req.user
+		? next()
+		: res.redirect('/yunoauth2');
+});
 
 app.use('/', router);
 app.listen(process.env.PORT || 10005);
