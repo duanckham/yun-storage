@@ -23,9 +23,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-	if (!req.user)
-		req.uesr = {openID: 'yun'}; // res.redirect('/yunoauth2');
-	
+	// res.redirect('/yunoauth2');
+	req.uesr = {openID: 'yun'};
 	next();
 });
 
