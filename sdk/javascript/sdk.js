@@ -13,7 +13,7 @@ YunStorage.prototype.initUploader = function() {
 	var self = this;
 	var uploader = new plupload.Uploader({
 		browse_button: this.settings.browse_button,
-		url: 'http://127.0.0.1:10005/upload'
+		url: 'http://storage.yunpro.cn/upload'
 	});
 
 	document.getElementById(this.settings.upload_button).onclick = function() {
