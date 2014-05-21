@@ -1,5 +1,6 @@
 var YunStorage = function(settings) {
 	this.settings = settings;
+	this.listeners = {};
 	return this.init();
 };
 
@@ -9,16 +10,25 @@ YunStorage.prototype.init = function() {
 };
 
 YunStorage.prototype.initUploader = function() {
+	var self = this;
 	var uploader = new plupload.Uploader({
 		browse_button: this.settings.browse_button,
-		url: 'http://www.baidu.com/'
+		url: 'http://127.0.0.1:10005/upload'
 	});
-
-	uploader.init();
 
 	document.getElementById(this.settings.upload_button).onclick = function() {
 		uploader.start();
 	};
+
+	uploader.bind('UploadProgress', function(up, file) {
+		self.emit('progress', file.percent);
+	});
+
+	uploader.bind('FileUploaded', function(up, file, res) {
+		self.emit('end', JSON.parse(res.response));
+	});
+
+	uploader.init();
 };
 
 YunStorage.prototype.loadPluploadJS = function(callback) {
@@ -33,4 +43,17 @@ YunStorage.prototype.loadPluploadJS = function(callback) {
 			callback();
 		}
 	}, 500);
+};
+
+YunStorage.prototype.on = function(event_name, callback) {
+	if (!this.listeners[event_name])
+		this.listeners[event_name] = [];
+
+	this.listeners[event_name].push(callback);
+};
+
+YunStorage.prototype.emit = function(event_name, data) {
+	this.listeners[event_name].forEach(function(callback) {
+		callback(data);
+	});
 };
