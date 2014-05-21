@@ -6,21 +6,21 @@ var session = require('cookie-session');
 var router = require('./lib/router');
 var app = express();
 
+// CORS
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+	res.setHeader('Access-Control-Allow-Credentials', true);
+
+	next();
+});
+
 app.use(bodyParser());
 app.use(cookieParser());
 app.use(session({secret: '5f1d65f27e370c36dfd845f6dc78b869'}));
 app.use(yunOAuth.middleware());
 app.use(express.static(__dirname + '/sdk'));
-
-// CORS
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    next();
-});
 
 app.use(function(req, res, next) {
 	req.user = {
