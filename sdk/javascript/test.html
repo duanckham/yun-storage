@@ -10,7 +10,7 @@
 <br />
 
 <div id="container">
-    <a id="browse" href="javascript:;">[Browse]</a> 
+    <a id="browse" href="javascript:;">[Browse]</a>
     <a id="upload" href="javascript:;">[Upload]</a>
 </div>
 
@@ -27,6 +27,12 @@ storage.on('progress', function(p) {
 storage.on('end', function(r) {
 	console.log(r);
 });
+
+// AUTO UPLOAD
+storage.on('change', function() {
+	storage.upload();
+});
+
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 var YunStorage = function(settings) {
 	this.settings = settings;
 	this.listeners = {};
+	this.uploader;
 	return this.init();
 };
 
@@ -11,24 +12,29 @@ YunStorage.prototype.init = function() {
 
 YunStorage.prototype.initUploader = function() {
 	var self = this;
-	var uploader = new plupload.Uploader({
+
+	this.uploader = new plupload.Uploader({
 		browse_button: this.settings.browse_button,
 		url: 'http://storage.yunpro.cn/upload'
 	});
 
 	document.getElementById(this.settings.upload_button).onclick = function() {
-		uploader.start();
+		self.uploader.start();
 	};
 
-	uploader.bind('UploadProgress', function(up, file) {
+	this.uploader.bind('UploadProgress', function(up, file) {
 		self.emit('progress', file.percent);
 	});
 
-	uploader.bind('FileUploaded', function(up, file, res) {
+	this.uploader.bind('FileUploaded', function(up, file, res) {
 		self.emit('end', JSON.parse(res.response));
 	});
 
-	uploader.init();
+	this.uploader.bind('FilesAdded', function(up, file, res) {
+		self.emit('change', {});
+	});
+
+	this.uploader.init();
 };
 
 YunStorage.prototype.loadPluploadJS = function(callback) {
@@ -43,6 +49,10 @@ YunStorage.prototype.loadPluploadJS = function(callback) {
 			callback();
 		}
 	}, 500);
+};
+
+YunStorage.prototype.upload = function() {
+	self.uploader.start();
 };
 
 YunStorage.prototype.on = function(event_name, callback) {
