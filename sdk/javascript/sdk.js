@@ -52,7 +52,8 @@ YunStorage.prototype.loadPluploadJS = function(callback) {
 };
 
 YunStorage.prototype.upload = function() {
-	self.uploader.start();
+	this.uploader.start();
+	return this;
 };
 
 YunStorage.prototype.on = function(event_name, callback) {
