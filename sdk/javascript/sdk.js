@@ -13,9 +13,10 @@ YunStorage.prototype.init = function() {
 YunStorage.prototype.initUploader = function() {
 	var self = this;
 
+	this.settings.server = this.settings.server || 'http://storage.yunpro.cn';
 	this.uploader = new plupload.Uploader({
 		browse_button: this.settings.browse_button,
-		url: 'http://storage.yunpro.cn/upload'
+		url: this.settings.server + '/upload'
 	});
 
 	document.getElementById(this.settings.upload_button).onclick = function() {

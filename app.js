@@ -1,3 +1,4 @@
+var gm = require('gm');
 var express = require('express');
 var yunOAuth = require('yun-oauth');
 var bodyParser = require('body-parser');
