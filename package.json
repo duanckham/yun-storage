@@ -10,7 +10,8 @@
     "express": "~4.2.0",
     "formidable": "~1.0.14",
     "yun-oauth": "~0.0.3",
-    "mongodb": "~1.4.4"
+    "mongodb": "~1.4.4",
+    "gm": "*"
   },
   "devDependencies": {},
   "scripts": {
