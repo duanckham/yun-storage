@@ -44,3 +44,10 @@ APIs
 `(GET)  http://storage.yunpro.cn/list/:user_id`
 
 `(GET)  http://storage.yunpro.cn/file/:file_id`
+
+
+If the file is an image, you can use resize action:
+
+`(GET)  http://storage.yunpro.cn/file/:file_id?360x480`
+
+That's meaning `width * height`.
