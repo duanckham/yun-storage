@@ -65,11 +65,14 @@ YunStorage.prototype.on = function(event_name, callback) {
 };
 
 YunStorage.prototype.emit = function(event_name, data) {
-	this.listeners[event_name].forEach(function(callback) {
-		callback(data);
-	});
+	if (this.listeners && this.listeners[event_name]) {
+		this.listeners[event_name].forEach(function(callback) {
+			callback(data);
+		});	
+	}
 };
 
 YunStorage.prototype.destory = function() {
-	this.listeners = [];
+	this.uploader.destroy();
+	this.listeners = false;
 };
