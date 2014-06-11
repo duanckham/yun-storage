@@ -69,3 +69,7 @@ YunStorage.prototype.emit = function(event_name, data) {
 		callback(data);
 	});
 };
+
+YunStorage.prototype.destory = function() {
+	this.listeners = [];
+};
