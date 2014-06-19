@@ -6,9 +6,6 @@
 </head>
 <body>
 
-<ul id="filelist"></ul>
-<br />
-
 <div id="container">
     <a id="browse" href="javascript:;">[Browse]</a>
     <a id="upload" href="javascript:;">[Upload]</a>
@@ -17,7 +14,8 @@
 <script>
 var storage = new YunStorage({
 	browse_button: 'browse',
-	upload_button: 'upload'
+	upload_button: 'upload',
+	server: 'http://127.0.0.1:10005'
 });
 
 storage.on('progress', function(p) {
