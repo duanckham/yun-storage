@@ -14,6 +14,8 @@ app.use(express.static(__dirname + '/sdk'));
 
 // CORS
 app.use(function(req, res, next) {
+	console.log('cors');
+
 	res.setHeader('Access-Control-Allow-Origin', req.headers && req.headers.origin ? req.headers.origin : '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
