@@ -19,7 +19,8 @@ app.use(function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 	res.setHeader('Access-Control-Allow-Credentials', true);
 
-	console.log('req.url', req.url);
+	if (req.method === 'POST')
+		console.log('this is a POST req.', req.url);
 
 	if (req.method === 'OPTIONS')
 		return res.send(200);
