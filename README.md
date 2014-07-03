@@ -17,6 +17,23 @@ var storage = new YunStorage({
 });
 ```
 
+METHODS
+-------
+
+```
+// GET FILES LIST
+storage.files();
+
+// GET ONE FILE INFORMATION FROM FILES LIST
+storage.get(id);
+
+// REMOVE ONE FILE FROM FILES LIST
+storage.remove(id);
+
+// CLEAN ALL FILES
+storage.clean();
+```
+
 EVENTS
 ------
 

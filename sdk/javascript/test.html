@@ -2,6 +2,7 @@
 <head>
 <title>Test</title>
 <script src="http://storage.yunpro.cn/javascript/sdk.js"></script>
+<script src="http://127.0.0.1:10005/javascript/sdk.js"></script>
 <script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
 </head>
 <body>
@@ -14,7 +15,8 @@
 <script>
 var storage = new YunStorage({
 	browse_button: 'browse',
-	upload_button: 'upload'
+	upload_button: 'upload',
+	server: 'http://127.0.0.1:10005'
 });
 
 storage.on('progress', function(p) {
@@ -26,9 +28,10 @@ storage.on('end', function(r) {
 });
 
 // AUTO UPLOAD
-storage.on('change', function() {
-	storage.upload();
+storage.on('change', function(r) {
+	// storage.upload();
 });
+
 
 </script>
 </body>

@@ -2,6 +2,7 @@ var YunStorage = function(settings) {
 	this.settings = settings;
 	this.listeners = {};
 	this.uploader;
+
 	return this.init();
 };
 
@@ -31,8 +32,8 @@ YunStorage.prototype.initUploader = function() {
 		self.emit('end', JSON.parse(res.response));
 	});
 
-	this.uploader.bind('FilesAdded', function(up, file, res) {
-		self.emit('change', {});
+	this.uploader.bind('FilesAdded', function(up, files, res) {
+		self.emit('change', files);
 	});
 
 	this.uploader.init();
@@ -50,6 +51,25 @@ YunStorage.prototype.loadPluploadJS = function(callback) {
 			callback();
 		}
 	}, 500);
+};
+
+YunStorage.prototype.files = function() {
+	return this.uploader.files;
+};
+
+YunStorage.prototype.get = function(id) {
+	return this.uploader.getFile(id);
+};
+
+YunStorage.prototype.remove = function(id) {
+	return this.uploader.removeFile(id);	
+};
+
+YunStorage.prototype.clean = function() {
+	var files = this.files();
+	
+	for (var i = files.length; i > 0; i--)
+		this.remove(files[i - 1].id);
 };
 
 YunStorage.prototype.upload = function() {
