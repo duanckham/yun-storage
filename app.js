@@ -26,7 +26,6 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-	// res.redirect('/yunoauth2');
 	req.user = {openID: 'yun'};
 	next();
 });
