@@ -20,9 +20,11 @@ YunStorage.prototype.initUploader = function() {
 		url: this.settings.server + '/upload'
 	});
 
-	document.getElementById(this.settings.upload_button).onclick = function() {
-		self.uploader.start();
-	};
+	try {
+		document.getElementById(this.settings.upload_button).onclick = function() {
+			self.uploader.start();
+		};	
+	} catch (err) {}
 
 	this.uploader.bind('UploadProgress', function(up, file) {
 		self.emit('progress', file.percent);
