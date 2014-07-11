@@ -3,12 +3,67 @@ var YunStorage = function(settings) {
 	this.listeners = {};
 	this.uploader;
 
-	return this.init();
+	this.fixBrowser();
+	this.init();
+
+	return this;
 };
 
 YunStorage.prototype.init = function() {
 	this.loadPluploadJS(this.initUploader.bind(this));
 	return this;
+};
+
+YunStorage.prototype.fixBrowser = function() {
+	if (!Function.prototype.bind) {
+		Function.prototype.bind = function(oThis) {
+			if (typeof this !== 'function')
+				throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+
+			var aArgs = Array.prototype.slice.call(arguments, 1),
+				fToBind = this,
+				fNOP = function() {},
+				fBound = function() {
+					return fToBind.apply(this instanceof fNOP && oThis ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+				};
+
+			fNOP.prototype = this.prototype;
+			fBound.prototype = new fNOP();
+
+			return fBound;
+		};
+	}
+
+	if (!Array.prototype.forEach) {
+		Array.prototype.forEach = function(callback, thisArg) {
+			var T, k;
+
+			if (this == null)
+				throw new TypeError('this is null or not defined');
+
+			var O = Object(this);
+			var len = O.length >>> 0;
+
+			if (typeof callback !== 'function')
+				throw new TypeError(callback + ' is not a function');
+
+			if (arguments.length > 1)
+				T = thisArg;
+
+			k = 0;
+
+			while (k < len) {
+				var kValue;
+
+				if (k in O) {
+					kValue = O[k];
+					callback.call(T, kValue, k, O);
+				}
+
+				k++;
+			}
+		};
+	}
 };
 
 YunStorage.prototype.initUploader = function() {
