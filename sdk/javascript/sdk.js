@@ -86,7 +86,7 @@ YunStorage.prototype.initUploader = function() {
 	});
 
 	this.uploader.bind('FileUploaded', function(up, file, res) {
-		self.emit('end', JSON.parse(res.response));
+		self.emit('end', res.response);
 	});
 
 	this.uploader.bind('FilesAdded', function(up, files, res) {
