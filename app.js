@@ -44,4 +44,4 @@ yunOAuth.easyAuth(app, {
 	clientSecret: CONFIG.OAUTH_SECRET
 });
 
-console.log('* running');
+console.log('* running on', process.env.PORT || 10001);
