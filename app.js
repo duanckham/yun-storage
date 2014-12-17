@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('cookie-session');
 var router = require('./lib/router');
+var config = require('./config');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +37,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', router);
-app.listen(process.env.PORT || 10001);
+app.listen(process.env.PORT || CONFIG.PORT);
 
 yunOAuth.easyAuth(app, {
 	host: CONFIG.DEV_MODE ? '127.0.0.1:10001' : 'storage.yunpro.cn',
@@ -44,4 +45,4 @@ yunOAuth.easyAuth(app, {
 	clientSecret: CONFIG.OAUTH_SECRET
 });
 
-console.log('* running on', process.env.PORT || 10001);
+console.log('* running on', process.env.PORT || CONFIG.PORT);
